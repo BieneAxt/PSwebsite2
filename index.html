@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dein Name | IT-Entwickler & Roblox Game Entwickler</title>
+  <meta name="description" content="Portfolio von IT-Entwickler & Roblox Game Entwickler – moderne Web- & Game-Projekte, Skills, Ausbildung und Kontakt." />
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" integrity="sha512-i0Zg3yq9gJZcKc13HFYkYjKsgTKXQ72qf2u3e9A+OqXf0YIN9X1x4l0aiV1l9zpxzqaZO0Z5Tq7iZ1a9YdX9yQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* ==========
+       Design-Variablen
+       ========== */
+    :root {
+      --bg: #0b1220;            /* dunkelblau/grau */
+      --bg-elev: #0f172a;       /* Karten/Flächen */
+      --text: #e5e7eb;          /* Text hell */
+      --muted: #94a3b8;         /* sekundärer Text */
+      --border: #1f2737;        /* Linien/Border */
+      --accent: #00ff84;        /* Neon-Grün (Akzent) */
+      --accent-alt: #8b5cf6;    /* Violett (Alternative) */
+      --shadow-accent: 0 12px 40px rgba(0,255,132,0.18);
+      --shadow-card: 0 8px 30px rgba(2,6,23,0.5);
+    }
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-elev: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --shadow-card: 0 8px 30px rgba(2,6,23,0.08);
+    }
 
+    /* ==========
+       Base/Reset
+       ========== */
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(0,255,132,0.08), transparent 60%),
+                  radial-gradient(800px 500px at 110% -20%, rgba(139,92,246,0.07), transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    ::selection{background: rgba(0,255,132,0.25)}
+
+    .container{max-width:1100px; margin:0 auto; padding:0 1.25rem}
+    section{padding: 4.5rem 0; scroll-margin-top: 80px}
+    @media (min-width: 768px){ section{padding: 6rem 0}}
+
+    /* Skip to content */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:var(--bg-elev); color:var(--text); padding:0.5rem 0.75rem; border-radius:0.5rem; border:1px solid var(--border)}
+
+    /* ==========
+       Header / Nav
+       ========== */
+    header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; height:64px;
+    }
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:700; letter-spacing:.2px}
+    .brand .logo{
+      width:28px; height:28px; display:grid; place-items:center;
+      background:linear-gradient(135deg, var(--accent), var(--accent-alt));
+      color:#0b1220; border-radius:8px; font-family:"JetBrains Mono", monospace; font-weight:800; font-size:.9rem;
+      box-shadow: var(--shadow-accent);
+    }
+    nav ul{display:none; gap:1.25rem; list-style:none; margin:0; padding:0}
+    nav a{color:var(--muted); font-weight:500}
+    nav a:hover, nav a.active{color:var(--text)}
+    .actions{display:flex; align-items:center; gap:.5rem}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.6rem .9rem; border-radius:.7rem; font-weight:600; border:1px solid var(--border);
+      background: var(--bg-elev); color: var(--text);
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: color-mix(in oklab, var(--accent), var(--border) 60%)}
+    .btn-accent{
+      border: none; color:#0b1220; background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent), var(--accent-alt) 20%));
+      box-shadow: var(--shadow-accent);
+    }
+    .icon-btn{
+      width:40px; height:40px; display:grid; place-items:center; border-radius:.6rem;
+      border:1px solid var(--border); background:var(--bg-elev); color:var(--text); cursor:pointer
+    }
+    .menu{display:inline-flex}
+    @media (min-width: 900px){
+      nav ul{display:flex}
+      .menu{display:none}
+    }
+
+    /* ==========
+       Hero
+       ========== */
+    .hero{
+      display:grid; gap:2rem; align-items:center;
+    }
+    @media (min-width: 900px){
+      .hero{grid-template-columns: 1.1fr .9fr; gap:3rem}
+    }
+    .eyebrow{color: var(--muted); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.8rem}
+    .title{
+      font-size: clamp(2rem, 4vw + 1rem, 3.2rem);
+      line-height:1.1; margin:.4rem 0 .6rem; font-weight:800;
+    }
+    .gradient-text{
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p{color: var(--muted); max-width: 60ch}
+    .cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.2rem}
+    .socials{display:flex; gap:.6rem; margin-top:.75rem}
+    .socials a{width:40px; height:40px; display:grid; place-items:center; border-radius:.6rem; border:1px solid var(--border); background:var(--bg-elev); color:var(--text)}
+    .socials a:hover{border-color: color-mix(in oklab, var(--accent), var(--border) 60%)}
+    .hero-card{
+      position:relative; border:1px solid var(--border); border-radius:1rem; background: linear-gradient(180deg, color-mix(in oklab, var(--bg-elev), #fff 1%), var(--bg-elev));
+      box-shadow: var(--shadow-card); padding:1.4rem;
+      overflow:hidden; min-height: 280px;
+    }
+    .hero-card .mesh{
+      position:absolute; inset:-20%; background:
+        radial-gradient(220px 220px at 20% 10%, rgba(0,255,132,0.12), transparent 60%),
+        radial-gradient(220px 220px at 80% 10%, rgba(139,92,246,0.10), transparent 60%);
+      pointer-events:none; filter: blur(6px);
+    }
+    .profile{
+      display:flex; align-items:center; gap:1rem; position:relative; z-index:1
+    }
+    .avatar{
+      width:84px; height:84px; border-radius:18px; display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      color:#0b1220; font-weight:800; font-size:1.6rem; font-family: "JetBrains Mono", monospace;
+      box-shadow: var(--shadow-accent);
+    }
+    .badges{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.8rem}
+    .badge{
+      font-size:.78rem; padding:.35rem .6rem; border-radius:.6rem; border:1px solid var(--border);
+      background: color-mix(in oklab, var(--bg-elev), #fff 2%); color: var(--muted)
+    }
+
+    /* ==========
+       Section headings
+       ========== */
+    .section-head{margin-bottom:1.5rem}
+    .section-head h2{
+      font-size: clamp(1.4rem, 1.4rem + 1.8vw, 2.2rem); margin:.2rem 0 .4rem; font-weight:800
+    }
+    .section-head p{color:var(--muted)}
+
+    /* ==========
+       About
+       ========== */
+    .about{display:grid; gap: 1.5rem}
+    @media (min-width: 900px){ .about{grid-template-columns: 1.15fr .85fr; gap:2.2rem} }
+    .card{
+      border:1px solid var(--border); background: var(--bg-elev); border-radius:1rem; padding:1rem; box-shadow: var(--shadow-card)
+    }
+    .card strong{color:var(--text)}
+    .list{display:grid; gap:.5rem; padding-left:1.1rem}
+    .list li{margin:.1rem 0}
+    .kv{display:grid; gap:.6rem}
+    .kv .row{display:flex; gap:.7rem; align-items:center}
+    .kv .row i{color:var(--accent)}
+
+    /* ==========
+       Skills
+       ========== */
+    .skills-groups{display:grid; gap:1rem}
+    @media (min-width: 780px){ .skills-groups{grid-template-columns: repeat(3,1fr)} }
+    .tags{display:flex; flex-wrap:wrap; gap:.5rem}
+    .tag{
+      padding:.4rem .6rem; border-radius:.6rem; background: color-mix(in oklab, var(--bg-elev), #fff 2%);
+      border:1px solid var(--border); font-weight:600; font-size:.86rem
+    }
+    .tag i{color: var(--accent)}
+
+    /* ==========
+       Projects
+       ========== */
+    .projects{display:grid; gap:1rem}
+    @media (min-width: 900px){ .projects{grid-template-columns: repeat(3, 1fr)} }
+    .project{
+      display:flex; flex-direction:column; gap:.7rem; height:100%
+    }
+    .project .thumb{
+      aspect-ratio: 16/9; border-radius:.8rem; border:1px solid var(--border); overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(0,255,132,.12), rgba(139,92,246,.12)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 2px, transparent 2px 10px);
+      position:relative;
+    }
+    .project .thumb::after{
+      content:""; position:absolute; inset:0; background: radial-gradient(600px 200px at 0% 0%, rgba(0,255,132,.12), transparent 40%);
+      mix-blend-mode: screen;
+    }
+    .project h3{margin:.2rem 0 .2rem; font-size:1.1rem}
+    .meta{color:var(--muted); font-size:.95rem}
+    .project .links{display:flex; gap:.5rem; margin-top:.2rem}
+    .project .links a{font-weight:600; color: var(--text)}
+    .project .links a:hover{color: var(--accent)}
+
+    /* ==========
+       Timeline (Ausbildung & Erfahrung)
+       ========== */
+    .timeline{position:relative; padding-left:1.5rem}
+    .timeline::before{
+      content:""; position:absolute; left:.6rem; top:.25rem; bottom:.25rem; width:2px; background: linear-gradient(180deg, var(--accent), var(--accent-alt))
+    }
+    .tl-item{position:relative; margin-bottom:1.2rem}
+    .tl-item::before{
+      content:""; position:absolute; left:-.07rem; top:.25rem; width:.8rem; height:.8rem; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt)); box-shadow: var(--shadow-accent)
+    }
+    .tl-item h4{margin:.1rem 0}
+    .tl-item .when{color:var(--muted); font-size:.9rem}
+
+    /* ==========
+       Kontakt
+       ========== */
+    form{display:grid; gap:.75rem}
+    .field{display:grid; gap:.35rem}
+    .field input, .field textarea{
+      border:1px solid var(--border); background: var(--bg); color: var(--text); border-radius:.6rem; padding:.7rem .8rem; font-size:1rem
+    }
+    .field input:focus, .field textarea:focus{outline:none; border-color: color-mix(in oklab, var(--accent), var(--border) 50%)}
+    .form-row{display:grid; gap:.75rem}
+    @media (min-width: 720px){ .form-row{grid-template-columns: 1fr 1fr} }
+    .note{color:var(--muted); font-size:.92rem}
+
+    /* ==========
+       Footer
+       ========== */
+    footer{
+      border-top:1px solid var(--border); padding:1.2rem 0; color:var(--muted); font-size:.95rem
+    }
+    .foot{
+      display:flex; align-items:center; gap:.7rem; justify-content:space-between; flex-wrap:wrap
+    }
+
+    /* ==========
+       Animations
+       ========== */
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1; transform: translateY(0)}
+    @media (prefers-reduced-motion: reduce) {
+      *{transition:none!important; animation:none!important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Startseite">
+        <span class="logo">DEV</span> <span>Dein Name</span>
+      </a>
+      <nav>
+        <button class="icon-btn menu" id="menuBtn" aria-label="Menü öffnen"><i class="fa-solid fa-bars"></i></button>
+        <ul id="navList">
+          <li><a href="#about">Über mich</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projekte</a></li>
+          <li><a href="#xp">Ausbildung & Erfahrung</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <button class="icon-btn" id="themeBtn" aria-label="Dark/Light switch"><i class="fa-solid fa-moon"></i></button>
+        <a class="btn btn-accent" href="#contact"><i class="fa-solid fa-paper-plane"></i> Kontakt</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="container">
+      <div class="hero">
+        <div class="reveal">
+          <div class="eyebrow">Hallo! Ich bin</div>
+          <h1 class="title">Dein Name – <span class="gradient-text">IT-Entwickler & Roblox Game Entwickler</span></h1>
+          <p>Ich entwickle performante Web- und Game-Lösungen mit Fokus auf saubere Architektur, wartbaren Code und ein starkes Nutzererlebnis.</p>
+          <div class="cta">
+            <a class="btn btn-accent" href="#projects"><i class="fa-solid fa-rocket"></i> Projekte ansehen</a>
+            <a class="btn" href="#about"><i class="fa-solid fa-user"></i> Mehr über mich</a>
+          </div>
+          <div class="socials" aria-label="Social Links">
+            <a href="https://github.com/DEIN_GITHUB" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/DEIN_LINKEDIN" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:DEINE_EMAIL" aria-label="E-Mail"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <div class="mesh" aria-hidden="true"></div>
+          <div class="profile">
+            <div class="avatar">DN</div>
+            <div>
+              <strong>Tech-Stack</strong>
+              <div class="badges">
+                <span class="badge"><i class="fa-solid fa-code"></i> Lua</span>
+                <span class="badge"><i class="fa-solid fa-code"></i> C#</span>
+                <span class="badge"><i class="fa-solid fa-database"></i> SQL</span>
+                <span class="badge"><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="badges" style="margin-top:1rem">
+            <span class="badge"><i class="fa-solid fa-cube"></i> Roblox Studio</span>
+            <span class="badge"><i class="fa-brands fa-microsoft"></i> Blazor</span>
+            <span class="badge"><i class="fa-solid fa-diagram-project"></i> EF Core</span>
+            <span class="badge"><i class="fa-solid fa-square"></i> Radzen</span>
+            <span class="badge"><i class="fa-brands fa-microsoft"></i> Azure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Über mich -->
+    <section id="about" class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Über mich</div>
+        <h2>Wer ich bin</h2>
+        <p>Kurze Vorstellung, Motivation und was dich an Web & Game Dev begeistert.</p>
+      </div>
+      <div class="about">
+        <div class="card reveal">
+          <h3>Hallo, ich bin <strong>Dein Name</strong> 👋</h3>
+          <p>Ich arbeite gern an Lösungen, die pragmatisch, schnell und gut wartbar sind. Mein Fokus liegt auf .NET/Blazor für Web und Roblox Studio/Lua für Game-Mechaniken.</p>
+          <div class="kv" style="margin-top:.8rem">
+            <div class="row"><i class="fa-solid fa-graduation-cap"></i> Informationstechnischer Assistent mit Fachhochschulreife am <strong>Heinrich-Hertz-Europakolleg</strong></div>
+            <div class="row"><i class="fa-solid fa-location-dot"></i> Standort: <strong>Deine Stadt</strong> (remote/offsite möglich)</div>
+            <div class="row"><i class="fa-solid fa-briefcase"></i> Offen für: Praktikum, Werkstudent, Junior</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Interessen & Lieblingsgames 🎮</h3>
+          <ul class="list">
+            <li>Game Dev: Roblox Experiences, Prototyping, Gameplay-Design</li>
+            <li>Web: Blazor-Apps, UI/UX, Daten-Visualisierung</li>
+            <li>Automation & Monitoring: kleine Tools, Scripte, Telemetrie</li>
+          </ul>
+          <h4 style="margin-top:.8rem">Fav Games</h4>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-gamepad"></i> Roblox</span>
+            <span class="badge"><i class="fa-solid fa-gamepad"></i> Minecraft</span>
+            <span class="badge"><i class="fa-solid fa-gamepad"></i> Factorio</span>
+            <span class="badge"><i class="fa-solid fa-gamepad"></i> Portal 2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Skills</div>
+        <h2>Tech-Stack</h2>
+        <p>Sprachen, Frameworks & Tools, die ich produktiv einsetze.</p>
+      </div>
+      <div class="skills-groups">
+        <div class="card reveal">
+          <h3><i class="fa-solid fa-code"></i> Programmiersprachen</h3>
+          <div class="tags" style="margin-top:.7rem">
+            <span class="tag"><i class="fa-solid fa-code"></i> Lua</span>
+            <span class="tag"><i class="fa-solid fa-code"></i> C#</span>
+            <span class="tag"><i class="fa-solid fa-database"></i> SQL</span>
+            <span class="tag"><i class="fa-brands fa-html5"></i> HTML/CSS</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3><i class="fa-solid fa-cubes"></i> Frameworks</h3>
+          <div class="tags" style="margin-top:.7rem">
+            <span class="tag"><i class="fa-solid fa-cube"></i> Roblox Studio</span>
+            <span class="tag"><i class="fa-brands fa-microsoft"></i> Blazor</span>
+            <span class="tag"><i class="fa-solid fa-diagram-project"></i> EF Core</span>
+            <span class="tag"><i class="fa-solid fa-square"></i> Radzen</span>
+            <span class="tag"><i class="fa-brands fa-microsoft"></i> Azure</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3><i class="fa-solid fa-toolbox"></i> Tools</h3>
+          <div class="tags" style="margin-top:.7rem">
+            <span class="tag"><i class="fa-brands fa-git-alt"></i> Git</span>
+            <span class="tag"><i class="fa-solid fa-terminal"></i> CLI</span>
+            <span class="tag"><i class="fa-solid fa-bug"></i> Debugging</span>
+            <span class="tag"><i class="fa-solid fa-cloud"></i> CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projekte -->
+    <section id="projects" class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Projekte</div>
+        <h2>Ausgewählte Arbeiten</h2>
+        <p>Einige Dinge, an denen ich gearbeitet habe. Weitere lassen sich leicht hinzufügen.</p>
+      </div>
+      <div class="projects">
+        <!-- Project 1 -->
+        <article class="card project reveal">
+          <div class="thumb" role="img" aria-label="Roblox Spleef Spiel Vorschau"></div>
+          <h3>Roblox: Spleef-Spiel mit Shop</h3>
+          <div class="meta">Lua, Roblox Studio • Gameplay-Logik, Shop-System, Leaderboards</div>
+          <p>Fast-paced Spleef mit stabiler Server-Logik, Partikeleffekten und In-Game-Shop (Skins/Perks). Fokus auf Performance und faire Mechaniken.</p>
+          <div class="badges">
+            <span class="badge">Lua</span><span class="badge">Roblox Studio</span><span class="badge">UI</span>
+          </div>
+          <div class="links">
+            <a href="#" aria-disabled="true"><i class="fa-solid fa-link"></i> Demo/Video</a>
+            <a href="#" aria-disabled="true"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </article>
+        <!-- Project 2 -->
+        <article class="card project reveal">
+          <div class="thumb" role="img" aria-label="Blazor App Vorschau"></div>
+          <h3>BTMasterWebLite (Blazor)</h3>
+          <div class="meta">C#, Blazor, EF Core, Radzen</div>
+          <p>Leichte Management-App mit CRUD, Auth und Tabellen-UI. Saubere Architektur, Komponenten, und EF Core für Datenzugriff.</p>
+          <div class="badges">
+            <span class="badge">C#</span><span class="badge">Blazor</span><span class="badge">EF Core</span><span class="badge">Radzen</span>
+          </div>
+          <div class="links">
+            <a href="#" aria-disabled="true"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </article>
+        <!-- Project 3 -->
+        <article class="card project reveal">
+          <div class="thumb" role="img" aria-label="Monitoring System Vorschau"></div>
+          <h3>Monitoring-System für IT-Netzwerke</h3>
+          <div class="meta">C#, SQL, Azure • Telemetrie, Alerts, Dashboards</div>
+          <p>Leichtgewichtiges Monitoring mit Heartbeats, Log-Sammlung und Visualisierungen. Alerts via Mail/Webhook und skalierbar in Azure.</p>
+          <div class="badges">
+            <span class="badge">C#</span><span class="badge">SQL</span><span class="badge">Azure</span>
+          </div>
+          <div class="links">
+            <a href="#" aria-disabled="true"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ausbildung & Erfahrung -->
+    <section id="xp" class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Ausbildung & Erfahrung</div>
+        <h2>Werdegang</h2>
+        <p>Stationen, an denen ich gelernt und mitgewirkt habe.</p>
+      </div>
+      <div class="card reveal">
+        <div class="timeline">
+          <div class="tl-item">
+            <h4>Heinrich-Hertz-Europakolleg</h4>
+            <div class="when">Informationstechnischer Assistent mit Fachhochschulreife • [Jahr – Jahr]</div>
+            <p>Schwerpunkte: Softwareentwicklung, Netzwerktechnik, praxisnahe Projekte.</p>
+          </div>
+          <div class="tl-item">
+            <h4>Praktikum – soITbe IT-Solutions</h4>
+            <div class="when">[Zeitraum]</div>
+            <p>Mitarbeit an internen Tools, Monitoring/Automatisierung und Dokumentation.</p>
+          </div>
+          <div class="tl-item">
+            <h4>Abschlussprojekte</h4>
+            <div class="when">[Jahr]</div>
+            <ul class="list">
+              <li>BTMasterWebLite – Blazor-Management-App</li>
+              <li>Monitoring-System – Telemetrie, Alerts, Dashboards</li>
+              <li>Roblox Spleef – Shop/Perks, stabile Serverlogik</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="contact" class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Kontakt</div>
+        <h2>Let’s build something</h2>
+        <p>Schreib mir gern eine Nachricht – ich melde mich schnell zurück.</p>
+      </div>
+      <div class="about">
+        <div class="card reveal">
+          <h3>Direkt</h3>
+          <div class="kv" style="margin-top:.5rem">
+            <div class="row"><i class="fa-solid fa-envelope"></i> <a href="mailto:DEINE_EMAIL">DEINE_EMAIL</a></div>
+            <div class="row"><i class="fa-brands fa-github"></i> <a target="_blank" rel="noopener" href="https://github.com/DEIN_GITHUB">github.com/DEIN_GITHUB</a></div>
+            <div class="row"><i class="fa-brands fa-linkedin"></i> <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/DEIN_LINKEDIN">LinkedIn</a></div>
+          </div>
+          <p class="note" style="margin-top:.8rem">Tipp: Für zuverlässiges Formular-Handling nutze Formspree/EmailJS (siehe Kommentar im Code).</p>
+        </div>
+        <div class="card reveal">
+          <h3>Kontaktformular</h3>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Dein Name" required />
+              </div>
+              <div class="field">
+                <label for="email">E-Mail</label>
+                <input id="email" name="email" type="email" placeholder="name@mail.com" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" rows="5" placeholder="Worum geht’s?" required></textarea>
+            </div>
+            <button class="btn btn-accent" type="submit"><i class="fa-solid fa-paper-plane"></i> Senden</button>
+            <p class="note" id="formNote" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> Dein Name</div>
+      <div>Built with ❤️ · <a href="#home">nach oben</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // ==========
+    // Einstellungen
+    // ==========
+    const FORMSPREE_ID = ""; // Optional: z. B. "xyzabcde". Anleitung: formspree.io
+    // const EMAILJS_PUBLIC_KEY = ""; // Optional: EmailJS Integration
+
+    // ==========
+    // Theme Switch
+    // ==========
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){ html.setAttribute('data-theme', savedTheme); }
+    themeBtn?.addEventListener('click', ()=>{
+      const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', current);
+      localStorage.setItem('theme', current);
+      themeBtn.innerHTML = current === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    });
+    // initial icon state
+    themeBtn.innerHTML = (html.getAttribute('data-theme') === 'dark') ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+
+    // ==========
+    // Mobile Nav
+    // ==========
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn?.addEventListener('click', ()=>{
+      const open = navList.style.display === 'flex';
+      navList.style.display = open ? 'none' : 'flex';
+      navList.style.flexDirection = 'column';
+      navList.style.position = 'absolute';
+      navList.style.right = '1rem';
+      navList.style.top = '60px';
+      navList.style.background = getComputedStyle(document.documentElement).getPropertyValue('--bg-elev');
+      navList.style.padding = '.6rem';
+      navList.style.border = '1px solid ' + getComputedStyle(document.documentElement).getPropertyValue('--border');
+      navList.style.borderRadius = '.8rem';
+      navList.style.gap = '.6rem';
+    });
+    navList?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{ if(window.innerWidth < 900) navList.style.display='none'; }));
+
+    // ==========
+    // Scroll-Reveal
+    // ==========
+    const io = new IntersectionObserver(entries =>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // ==========
+    // Active Nav Link
+    // ==========
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const spy = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector('nav a[href="#'+id+'"]');
+        if(link){
+          if(entry.isIntersecting) { navLinks.forEach(l=>l.classList.remove('active')); link.classList.add('active'); }
+        }
+      });
+    }, {rootMargin: "-50% 0px -50% 0px", threshold: 0});
+    sections.forEach(s=> spy.observe(s));
+
+    // ==========
+    // Kontakt-Formular
+    // ==========
+    const form = document.getElementById('contactForm');
+    const formNote = document.getElementById('formNote');
+    form?.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      formNote.textContent = "Sende...";
+      const data = new FormData(form);
+
+      if(FORMSPREE_ID){
+        try{
+          const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: data
+          });
+          if(res.ok){
+            form.reset();
+            formNote.textContent = "Danke! Deine Nachricht wurde gesendet.";
+          } else {
+            formNote.textContent = "Ups – etwas ist schiefgelaufen. Schreib mir gern direkt per E-Mail.";
+          }
+        }catch(err){
+          formNote.textContent = "Netzwerkfehler. Bitte versuche es später erneut.";
+        }
+      } else {
+        // Fallback: öffnet Mailclient
+        const name = encodeURIComponent(data.get('name'));
+        const email = encodeURIComponent(data.get('email'));
+        const message = encodeURIComponent(data.get('message'));
+        window.location.href = `mailto:DEINE_EMAIL?subject=Kontakt%20Portfolio:%20${name}&body=Von:%20${name}%20(${email})%0D%0A%0D%0A${message}`;
+        formNote.textContent = "Mail-Client wurde geöffnet. Alternativ Formspree aktivieren (siehe Code).";
+      }
+    });
+
+    // ==========
+    // Sonstiges
+    // ==========
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // JSON-LD (SEO)
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dein Name",
+      "jobTitle": "IT-Entwickler & Roblox Game Entwickler",
+      "url": window.location.origin,
+      "sameAs": [
+        "https://github.com/DEIN_GITHUB",
+        "https://www.linkedin.com/in/DEIN_LINKEDIN"
+      ]
+    };
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(ld);
+    document.head.appendChild(s);
+  </script>
+</body>
+</html>
